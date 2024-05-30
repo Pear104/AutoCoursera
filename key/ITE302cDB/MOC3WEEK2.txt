@@ -1,0 +1,17 @@
+A description of a type of character based upon demographics, habits, and interests
+Proving that something exists, but not the specifics
+Telephone numbers
+Passport numbers
+A request for consent to perform an action
+The intention behind a certain activity or request
+A method of performing operations on encrypted data.
+Data applied to secondary purposes may expose private aspects or diminish personal dignity
+Additional organizations and processors may now have access to the data
+Granular or modular control over data usage
+Opt-out/opt-in mechanisms
+HIPAA
+NIST Privacy Framework
+Authentication
+Authorization
+Comparing multiple data points or sets
+Discovering new information via inference

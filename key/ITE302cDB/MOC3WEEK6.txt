@@ -1,0 +1,13 @@
+Security information and event management
+Network intrusion detection alerts
+System event logs
+What methods of attack are legitimate
+What systems may be targeted
+White team
+Restoring compromised functionality through a system rollback
+Tracking deviance from norms
+Attack simulations
+Confidentiality, integrity, availability
+Encryption protocols
+Cybersecurity incident response team
+Threat modeling or analysis tools

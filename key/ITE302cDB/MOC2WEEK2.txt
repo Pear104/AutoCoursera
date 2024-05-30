@@ -1,0 +1,11 @@
+You have to make a choice between two scenarios where choosing one leads to loss of life in the other.
+Privacy
+Accountability
+Explainability
+The system, as designed, acts counter to the well-being of the users.
+Children are more susceptible to manipulation and therefore need extra protective measures.
+Robustness to adversarial examples 
+It prevents the spread of disinformation that can cause harm to vulnerable populations.
+These rights necessitate that robots become sentient entities, which is currently not feasible.
+They usurp a person’s likeness and can then be weaponized against them.
+They can be broken by combining this data with other publicly available data. 

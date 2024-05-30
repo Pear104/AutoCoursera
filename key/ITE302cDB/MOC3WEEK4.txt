@@ -1,0 +1,12 @@
+Self-learning models may introduce new data you’re unaware of.
+Closed source software may not be accessible to independent auditors.
+A user logs in one day to find that they are able to post, but receive no direct responses.
+Explainable AI
+Provide a large, unrestricted text box where users can enter their thoughts at length.
+At the point of collecting the data.
+Any missing values in the dataset and how they were handled.
+Any known bias in the sample data.
+Anchor Explanations
+What-If
+LIME outputs results faster than SHAP.
+LIME is less accurate than SHAP.

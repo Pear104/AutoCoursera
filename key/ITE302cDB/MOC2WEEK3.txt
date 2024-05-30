@@ -1,0 +1,15 @@
+Regulations provide a clear basis for potential litigation.
+Regulations have legal enforcement behind them.
+CCPA
+Data protection officers
+Data protection impact assessments
+PCI DSS
+Organizations must obtain consent from individuals regarding the collection and use of biometric data.
+Organizations must destroy biometric data in a timely fashion.
+Anyone under 13 years old
+Formal certification processes that provide competitive advantage
+International support, recognition, and involvement
+A stipulation to continue providing service even if data usage is denied
+Reference materials
+Emulated empathy
+Machine-readable privacy terms

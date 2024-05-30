@@ -1,0 +1,11 @@
+Reinforcement bias
+Because the model won’t generalize to the entire population.
+Outliers
+To evaluate the quality of data before it is used to train a model.
+The persona may represent groups of people that could be susceptible to bias.
+Disparate impact
+To perform a strategic analysis of how external environments impact business operations.
+Consider bias a spectrum.
+Leverage customer input to reduce bias.
+An open source library that evaluates models for bias and provides mitigation tactics to reduce that bias.
+Radioactive data tracing doesn’t impact a model’s performance.

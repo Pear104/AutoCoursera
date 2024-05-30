@@ -1,0 +1,16 @@
+Responsible, Accountable, Consulted, Informed
+A ruling or scoring made outside of a court.
+The rights of individuals or communities.
+The health and well-being of individuals or communities.
+Bias of people towards overly trusting in automation.
+It supports consistency of behavior and unification of culture.
+It supports accountability and makes it more explicit.
+If the model is far too complex to be readily understood by human beings.
+It reveals any gaps in accountability or auditability.
+It minimizes the impact of any ethical issues which may emerge.
+Specify and document what precisely is being audited.
+Document the audit procedures to be followed.
+Model training time
+Performance metrics, such as accuracy and cost functions
+Data annotation and augmentation tools
+Compiled models

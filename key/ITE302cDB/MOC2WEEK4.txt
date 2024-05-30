@@ -1,0 +1,16 @@
+Only keep data for as long as it is needed
+Only collect data that is strictly necessary
+Avoidance of reputational damage
+Long-term cost savings due to avoiding fines
+Increasing AI performance sometimes leads to greater model complexity, making it more difficult to explain decision-making processes.
+Efficiency benefits may lead to complex second-order costs
+Mitigating excessive scope or potential collateral damage
+Balancing the negative effects of an AI system on people with the effects on environments and objects
+Data-driven algorithms improve solutions, leading to new customers, and better data.
+Evidence-based policy
+Managing expectations that not everyone can get what they want, when they want it
+Engaging with multiple stakeholders to understand their particular needs
+Respecting the right of the user to choose and customize their experiences
+Refraining from guiding users into something they didn’t wish for or intend
+Consolidating interests through mergers and acquisitions
+Locking out smaller players, leading to monopolies or cartels

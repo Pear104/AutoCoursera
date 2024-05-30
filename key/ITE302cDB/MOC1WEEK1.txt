@@ -1,0 +1,16 @@
+The challenge of understanding the inner workings of opaque systems
+Whether the data was gathered in an ethical manner.
+If the holders of data are trustworthy entities.
+Data can be monetarily valuable.
+Data can fuel algorithmic technologies.
+From its inception, through maintenance, to applying foresight regarding its decommissioning.
+Data collected for one application that could also be applied to another application in a different domain.
+Transparency and explainability, balanced with privacy.
+Accountability and management of bias.
+Narrow AI
+They can automate very complex operations.
+They may be able to self-improve by learning from data.
+Delete any erroneous data.
+Manipulate data or alter its interpretation.
+Keeping up with the latest developments and vulnerabilities.
+Cleaning and sorting data, and auditing for bias.

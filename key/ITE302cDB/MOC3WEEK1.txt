@@ -1,0 +1,14 @@
+Identification
+Analysis
+Mitigation
+Qualitative analysis
+Semi-quantitative analysis
+Ignore
+The variable’s distribution, when graphed, exhibits a symmetrical bell shape.
+The mean, median, and mode of all measurements is the same, and all are located at the center of the distribution.
+Variance measures how far a data example is from the mean.
+There is a strong positive correlation between both variables.
+By providing a model of belief about the likelihood of some event happening
+Regression
+Recall
+Cost function
