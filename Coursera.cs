@@ -9,7 +9,7 @@ namespace auto_coursera
 
         public static void Login(string email, string password)
         {
-            driver.Navigate().GoToUrl(CourseData.All["ITE302c"]["MOC" + 1]["WEEK" + 1]);
+            driver.Navigate().GoToUrl(CourseData.All["ITE302c"]["MOOC" + 1]["WEEK" + 1]);
 
             driver.FindElement(By.Id("email"), 10000).SendKeys(email);
             driver.FindElement(By.Id("password"), 10000).SendKeys(password);
@@ -39,9 +39,18 @@ namespace auto_coursera
             catch { }
         }
 
+        public static string NormalizeString(string input)
+        {
+            return new string(input.Where(c => !char.IsPunctuation(c) || c == '\"').ToArray())
+                .ToLower()
+                .Trim();
+        }
+
         public static void DoSingleQuiz(string course, int mooc, int week)
         {
-            driver.Navigate().GoToUrl(CourseData.All[course]["MOC" + mooc]["WEEK" + week]);
+            driver.Navigate().GoToUrl(CourseData.All[course]["MOOC" + mooc]["WEEK" + week]);
+
+            // Click on continue button
             driver
                 .FindElement(
                     By.XPath("//*[@id=\"main\"]/div[1]/div[3]/div[1]/div[2]/div/div/div/div/div"),
@@ -49,14 +58,64 @@ namespace auto_coursera
                 )
                 .Click();
 
-            var testOption = driver.FindElements(By.ClassName("rc-Option"), 10000);
-            var key = Helper.ReadKey($"key/{course}DB/MOC{mooc}WEEK{week}.txt");
-            foreach (IWebElement element in testOption)
+            var questions = driver.FindElements(By.ClassName("rc-FormPartsQuestion"), 10000);
+
+            // The keys read from file
+            var keys = Helper.ReadKey($"key/{course}DB/questions_and_keys.txt");
+
+            foreach (IWebElement question in questions)
             {
-                if (key.Contains(element.Text.Trim()))
+                var questionText = question
+                    .FindElement(
+                        By.CssSelector(
+                            "div:nth-child(1) > div.rc-FormPartsQuestion__contentCell p:nth-child(1)"
+                        )
+                    )
+                    .Text.Trim()
+                    .Replace("“", "\"")
+                    .Replace("”", "\"")
+                    .Replace("’", "'")
+                    .Replace("‛", "'");
+                Console.WriteLine("===================================================");
+                Console.WriteLine($"testQs-{questionText}-");
+
+                // Check if the current question extracted from Selenium already exist in my keys file or not
+                var quesFounds = keys.FindAll(key => key.Question.Contains(questionText));
+                //if (quesFound != null)
+                //{
+                //    Console.WriteLine($"sheetQs-{quesFound.Question}-");
+                //    Console.WriteLine($"sheetAns-{quesFound.Answer}-");
+                //}
+                var answers = question.FindElements(By.ClassName("rc-Option"));
+                foreach (IWebElement answer in answers)
                 {
-                    Console.WriteLine(element.Text);
-                    element.Click();
+                    Console.WriteLine($"testAns-{answer.Text.Trim()}-");
+                    var answerText = answer
+                        .Text.Trim()
+                        .Replace("“", "\"")
+                        .Replace("”", "\"")
+                        .Replace("’", "'")
+                        .Replace("‛", "'");
+                    var autoTrueText =
+                        "Yes, I have completed reviews of the work of 3 peers for each prompt in the preceding assignment.";
+                    if (quesFounds.Count > 0)
+                    {
+                        foreach (var quesFound in quesFounds)
+                        {
+                            if (
+                                (quesFound.Answer.Contains(answerText))
+                                || answerText.Contains(autoTrueText)
+                            )
+                            {
+                                Console.WriteLine($"key-{answerText}-");
+                                answer.Click();
+                            }
+                        }
+                    }
+                    else
+                    {
+                        answer.Click();
+                    }
                 }
             }
             driver
@@ -87,10 +146,10 @@ namespace auto_coursera
 
         public static void DoMOOC(string course, int mooc)
         {
-            foreach (var week in CourseData.All[course]["MOC" + mooc])
+            foreach (var week in CourseData.All[course]["MOOC" + mooc])
             {
                 Console.WriteLine(int.Parse(week.Key.Last().ToString()));
-                DoSingleQuiz("ITE302c", mooc, int.Parse(week.Key.Last().ToString()));
+                DoSingleQuiz(course, mooc, int.Parse(week.Key.Last().ToString()));
             }
         }
 
@@ -98,29 +157,36 @@ namespace auto_coursera
         {
             foreach (var mooc in CourseData.All[course])
             {
-                DoMOOC("ITE302c", int.Parse(mooc.Key.Last().ToString()));
+                DoMOOC(course, int.Parse(mooc.Key.Last().ToString()));
             }
         }
 
-        public static void Mark(int mooc)
+        public static void MarkCourse(string course)
         {
-            driver
-                .Navigate()
-                .GoToUrl(
-                    "https://www.coursera.org/learn/ethical-frameworks-action/peer/B8Wrx/ethical-review/submit"
-                //"https://www.coursera.org/learn/promote-ethical-data-driven-technologies/peer/MneNm/op-ed-article/submit"
-                );
-            // "Review assignments"
-            //*[@id="main"]/div[1]/div[1]/div[1]/div[2]/div/div/div[2]/div/div/div[2]/button
-            driver
-                .FindElement(
-                    By.XPath(
-                        "//*[@id=\"main\"]/div[1]/div[1]/div[1]/div[2]/div/div/div[2]/div/div/div[2]/button"
-                    ),
-                    10000
-                )
-                .Click();
-            Console.WriteLine("Clicked Review assignments");
+            foreach (var url in MarkData.All[course])
+            {
+                Mark(url);
+            }
+        }
+
+        public static void Mark(string url)
+        {
+            driver.Navigate().GoToUrl(url);
+            try
+            {
+                // "Review assignments"
+                //*[@id="main"]/div[1]/div[1]/div[1]/div[2]/div/div/div[2]/div/div/div[2]/button
+                driver
+                    .FindElement(
+                        By.XPath(
+                            "//*[@id=\"main\"]/div[1]/div[1]/div[1]/div[2]/div/div/div[2]/div/div/div[2]/button"
+                        ),
+                        5
+                    )
+                    .Click();
+                Console.WriteLine("Clicked Review assignments");
+            }
+            catch { }
 
             // "Start reviewing"
             //*[@id="main"]/div[1]/div[1]/div[2]/button
@@ -130,7 +196,7 @@ namespace auto_coursera
             Console.WriteLine("Clicked Start reviewing");
 
             // Options
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < 6; i++)
             {
                 MarkSingle();
             }
@@ -146,7 +212,14 @@ namespace auto_coursera
 
             foreach (IWebElement element in options)
             {
-                element.Click();
+                try
+                {
+                    element.Click();
+                }
+                catch
+                {
+                    Console.WriteLine("Element not clickable");
+                }
             }
 
             try

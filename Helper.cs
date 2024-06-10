@@ -1,24 +1,36 @@
-﻿using OpenQA.Selenium.Edge;
-
-namespace auto_coursera
+﻿namespace auto_coursera
 {
+    public class Quiz
+    {
+        public string Question { get; set; } = string.Empty;
+        public string Answer { get; set; } = string.Empty;
+    }
+
     internal class Helper
     {
-        public static EdgeDriver driver = new EdgeDriver();
-
-        public static List<string> ReadKey(string filepath)
+        public static List<Quiz> ReadKey(string filepath)
         {
-            List<string> key = new List<string>();
+            List<Quiz> keys = new List<Quiz>();
             try
             {
                 string[] lines = File.ReadAllLines(filepath);
-                key = lines.Select(x => x.Trim()).ToList();
+                foreach (string line in lines)
+                {
+                    string[] parts = line.Split('|');
+
+                    if (parts.Length == 2)
+                    {
+                        string question = parts[0].Trim();
+                        string answer = parts[1].Trim();
+                        keys.Add(new Quiz() { Answer = answer, Question = question });
+                    }
+                }
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"Error reading file: {ex.Message}");
             }
-            return key;
+            return keys;
         }
     }
 }

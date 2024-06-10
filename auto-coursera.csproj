@@ -14,79 +14,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="key\ITE302cDB\MOC1WEEK1.txt">
+    <None Update="key\ITE302cDB\questions_and_keys.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="key\ITE302cDB\MOC1WEEK2.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="key\ITE302cDB\MOC1WEEK3.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="key\ITE302cDB\MOC1WEEK4.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="key\ITE302cDB\MOC1WEEK5.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="key\ITE302cDB\MOC2WEEK1.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="key\ITE302cDB\MOC2WEEK2.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="key\ITE302cDB\MOC2WEEK3.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="key\ITE302cDB\MOC2WEEK4.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="key\ITE302cDB\MOC3WEEK1.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="key\ITE302cDB\MOC3WEEK2.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="key\ITE302cDB\MOC3WEEK3.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="key\ITE302cDB\MOC3WEEK4.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="key\ITE302cDB\MOC3WEEK5.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="key\ITE302cDB\MOC3WEEK6.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="key\ITE302cDB\MOC4WEEK1.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="key\ITE302cDB\MOC4WEEK2.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="key\ITE302cDB\MOC4WEEK3.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="key\ITE302cDB\MOC4WEEK4.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="key\ITE302cDB\MOC5WEEK1.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="key\ITE302cDB\MOC5WEEK2.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="key\ITE302cDB\MOC5WEEK3.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="key\ITE302cDB\MOC5WEEK4.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="key\ITE302cDB\MOC6WEEK1.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="key\MOC1WEEK3.txt">
+    <None Update="key\WDU203cDB\questions_and_keys.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>

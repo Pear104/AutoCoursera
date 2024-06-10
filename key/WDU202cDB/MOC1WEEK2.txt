@@ -1,9 +1,0 @@
-An interface can be best described as a bridge between:|a user and content
-Why is it helpful to rely on real world models within interface design? Choose the best answer.|Real world models are already familiar to a user, and therefore can help make the user’s experience much more seamless.
-Which of the following examples are considered real world models?|All of the above.
-What is the rule of thumb for organizing content within an interface?|Systematically
-True or false: An interface should be immediate and intuitive.|true
-Which physical relationship is NOT a factor for designing an interface?|the relative position of one user to another.
-Why is it important for the interface to react immediately when a user carries out an action? Choose the best answer.|The user needs confirmation from the interface that the system is working.
-Context-specific design is best defined as:|Shaping a design to reflect differences in content, goals, and users.
-While user interactions should occur in as few steps as possible, in what situation might an extra step be appropriate?|withdrawing a large sum of money from an ATM.

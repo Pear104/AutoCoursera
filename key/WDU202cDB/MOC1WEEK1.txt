@@ -1,8 +1,0 @@
-Choose the best term that applies to this statement: Primarily non-visual.|UX
-Choose the best term that applies to this statement: Creates tangible, material results.|UI
-Choose the best term that applies to this statement: Development is driven by user behavior and feedback.|UX
-Choose the best term that applies to this statement: Rooted primarily in graphic design.|UI
-Choose the best term that applies to this statement: Generating solutions to elevate user engagement on a given website.|UX
-Choose the best term that applies to this statement: Making decisions to define the form, aesthetics, and look and feel of a site.|UI
-Choose the best term that applies to this statement: Concerned with how a user chooses to navigate through a website.|UX
-Choose the best term that applies to this statement: Rooted in research, planning and testing.|UX
