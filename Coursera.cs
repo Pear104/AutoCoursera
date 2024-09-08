@@ -1,5 +1,7 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Edge;
+using OpenQA.Selenium.Support.UI;
+using SeleniumExtras.WaitHelpers;
 
 namespace auto_coursera
 {
@@ -9,10 +11,10 @@ namespace auto_coursera
 
         public static void Login(string email, string password)
         {
-            driver.Navigate().GoToUrl(CourseData.All["ITE302c"]["MOOC" + 1]["WEEK" + 1]);
+            driver.Navigate().GoToUrl(CourseData.All["ITE302c"].QuizUrls[0]);
 
-            driver.FindElement(By.Id("email"), 10000).SendKeys(email);
-            driver.FindElement(By.Id("password"), 10000).SendKeys(password);
+            driver.FindElement(By.XPath("//*[@id=\"cds-react-aria-1\"]"), 10000).SendKeys(email);
+            driver.FindElement(By.XPath("//*[@id=\"cds-react-aria-2\"]"), 10000).SendKeys(password);
 
             // Click login
             driver
@@ -46,9 +48,9 @@ namespace auto_coursera
                 .Trim();
         }
 
-        public static void DoSingleQuiz(string course, int mooc, int week)
+        public static void DoSingleQuiz(string course, string quizUrl)
         {
-            driver.Navigate().GoToUrl(CourseData.All[course]["MOOC" + mooc]["WEEK" + week]);
+            driver.Navigate().GoToUrl(quizUrl);
 
             // Click on continue button
             driver
@@ -61,7 +63,7 @@ namespace auto_coursera
             var questions = driver.FindElements(By.ClassName("rc-FormPartsQuestion"), 10000);
 
             // The keys read from file
-            var keys = Helper.ReadKey($"key/{course}DB/questions_and_keys.txt");
+            var keys = Helper.ReadKey($"key/{course}.txt");
 
             foreach (IWebElement question in questions)
             {
@@ -118,46 +120,90 @@ namespace auto_coursera
                     }
                 }
             }
+
+            // Click agree button
             driver
                 .FindElement(
                     By.XPath(
-                        "//*[@id=\"TUNNELVISIONWRAPPER_CONTENT_ID\"]/div[2]/div/div/div/div/div/div/div[2]/div/div[1]/div/div[2]/div[1]/div/div"
+                        "//*[@id=\"TUNNELVISIONWRAPPER_CONTENT_ID\"]/div[2]/div/div/div/div/div/div/div[2]/div/div[1]/div/div[2]/div[1]/div/div/label/div"
                     ),
                     10000
                 )
                 .Click();
+            new WebDriverWait(driver, TimeSpan.FromSeconds(20))
+                .Until(
+                    ExpectedConditions.ElementToBeClickable(
+                        By.XPath(
+                            "//*[@id=\"TUNNELVISIONWRAPPER_CONTENT_ID\"]/div[2]/div/div/div/div/div/div/div[2]/div/div[1]/div/div[2]/div[1]/div/div/label/div"
+                        )
+                    )
+                )
+                .Click();
+            Console.WriteLine("Clicked agree button");
+
             driver
                 .FindElement(
                     By.XPath(
-                        "//*[@id=\"TUNNELVISIONWRAPPER_CONTENT_ID\"]/div[2]/div/div/div/div/div/div/div[2]/div/div[2]/button[1]"
+                        "//*[@id=\"TUNNELVISIONWRAPPER_CONTENT_ID\"]/div[2]/div/div/div/div/div/div/div[2]/div/div[1]/div/div[2]/div[1]/div/div/label"
                     ),
                     10000
                 )
                 .Click();
-            driver
-                .FindElement(
-                    By.XPath(
-                        "//*[@id=\"TUNNELVISIONWRAPPER_CONTENT_ID\"]/div[1]/div/div/div/div/div/div/div[2]/div/button"
-                    ),
-                    10000
+            // Click submit button
+            new WebDriverWait(driver, TimeSpan.FromSeconds(20))
+                .Until(
+                    ExpectedConditions.ElementToBeClickable(
+                        By.CssSelector(
+                            "#TUNNELVISIONWRAPPER_CONTENT_ID > div.cds-231.css-1cxrrkn.cds-232.cds-237 > div > div > div > div > div > div > div:nth-child(2) > div > div.css-oc6ooc > button.cds-105.cds-button-disableElevation.cds-button-primary.css-ra3hwj"
+                        )
+                    )
                 )
                 .Click();
+            Console.WriteLine("Clicked submit button");
+
+            //driver
+            //    .FindElement(
+            //        By.XPath(
+            //            "//*[@id=\"TUNNELVISIONWRAPPER_CONTENT_ID\"]/div[2]/div/div/div/div/div/div/div[2]/div/div[1]/div/div[2]/div[1]/div/div"
+            //        ),
+            //        10000
+            //    )
+            //    .Click();
+
+            //driver
+            //    .FindElement(
+            //        By.XPath(
+            //            "//*[@id=\"TUNNELVISIONWRAPPER_CONTENT_ID\"]/div[2]/div/div/div/div/div/div/div[2]/div/div[2]/button[1]"
+            //        ),
+            //        10000
+            //    )
+            //    .Click();
+
+            //driver
+            //    .FindElement(
+            //        By.XPath(
+            //            "//*[@id=\"TUNNELVISIONWRAPPER_CONTENT_ID\"]/div[1]/div/div/div/div/div/div/div[2]/div/button"
+            //        ),
+            //        10000
+            //    )
+            //    .Click();
         }
 
-        public static void DoMOOC(string course, int mooc)
-        {
-            foreach (var week in CourseData.All[course]["MOOC" + mooc])
-            {
-                Console.WriteLine(int.Parse(week.Key.Last().ToString()));
-                DoSingleQuiz(course, mooc, int.Parse(week.Key.Last().ToString()));
-            }
-        }
+        //public static void DoTest(string course, int mooc)
+        //{
+        //    foreach (var week in CourseData.All[course])
+        //    {
+        //        Console.WriteLine(int.Parse(week.Key.Last().ToString()));
+        //        DoSingleQuiz(course, mooc, int.Parse(week.Key.Last().ToString()));
+        //    }
+        //}
 
         public static void DoCourse(string course)
         {
-            foreach (var mooc in CourseData.All[course])
+            foreach (var quizUrl in CourseData.All[course].QuizUrls)
             {
-                DoMOOC(course, int.Parse(mooc.Key.Last().ToString()));
+                //Console.WriteLine(int.Parse(week.Key.Last().ToString()));
+                DoSingleQuiz(course, quizUrl);
             }
         }
 
