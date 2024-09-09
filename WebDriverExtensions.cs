@@ -1,6 +1,7 @@
-﻿using System.Collections.ObjectModel;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
+using SeleniumExtras.WaitHelpers;
+using System.Collections.ObjectModel;
 
 namespace auto_coursera
 {
@@ -31,5 +32,27 @@ namespace auto_coursera
             }
             return driver.FindElements(by);
         }
+
+        public static void RemovePopup(this IWebDriver driver, int timeoutInSeconds)
+        {
+            if (timeoutInSeconds > 0)
+            {
+                var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(timeoutInSeconds));
+                try
+                {
+                    wait.Until(
+                            ExpectedConditions.ElementToBeClickable(
+                                By.XPath(
+                                    "//*[@id=\"rendered-content\"]/div/div[1]/div[1]/div/div/div/div/div/div[1]/button"
+                                )
+                            )
+                        )
+                        ?.Click();
+                }
+                catch { }
+            }
+        }
+
+        //*[@id="rendered-content"]/div/div[1]/div[1]/div/div/div/div/div/div[1]/button
     }
 }

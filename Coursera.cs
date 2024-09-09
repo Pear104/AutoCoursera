@@ -1,13 +1,20 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Edge;
-using OpenQA.Selenium.Support.UI;
-using SeleniumExtras.WaitHelpers;
 
 namespace auto_coursera
 {
     internal class Coursera
     {
-        public static EdgeDriver driver = new EdgeDriver();
+        public static EdgeDriver driver;
+
+        static Coursera()
+        {
+            var options = new EdgeOptions();
+            options.AddArgument("start-maximized"); // Example option: start the browser maximized
+            options.AddArgument("--disable-popup-blocking"); // Example option: disable popup blocking
+
+            driver = new EdgeDriver(options);
+        }
 
         public static void Login(string email, string password)
         {
@@ -51,7 +58,7 @@ namespace auto_coursera
         public static void DoSingleQuiz(string course, string quizUrl)
         {
             driver.Navigate().GoToUrl(quizUrl);
-
+            Console.WriteLine(quizUrl);
             // Click on continue button
             driver
                 .FindElement(
@@ -64,25 +71,32 @@ namespace auto_coursera
 
             // The keys read from file
             var keys = Helper.ReadKey($"key/{course}.txt");
-
+            var i = 1;
             foreach (IWebElement question in questions)
             {
-                var questionText = question
-                    .FindElement(
-                        By.CssSelector(
-                            "div:nth-child(1) > div.rc-FormPartsQuestion__contentCell p:nth-child(1)"
-                        )
+                Console.WriteLine(i);
+                i++;
+                var questionText = string.Join(
+                        "",
+                        question
+                            .FindElements(
+                                By.CssSelector(
+                                    "div:nth-child(1) > div.rc-FormPartsQuestion__contentCell p"
+                                )
+                            )
+                            .Select(q => q.Text.Trim())
                     )
-                    .Text.Trim()
                     .Replace("“", "\"")
                     .Replace("”", "\"")
                     .Replace("’", "'")
                     .Replace("‛", "'");
-                Console.WriteLine("===================================================");
-                Console.WriteLine($"testQs-{questionText}-");
-
+                Console.WriteLine("===================================");
+                Console.WriteLine(questionText);
                 // Check if the current question extracted from Selenium already exist in my keys file or not
-                var quesFounds = keys.FindAll(key => key.Question.Contains(questionText));
+                var quesFounds = keys.FindAll(key =>
+                    key.Question.Contains(string.Join("", questionText))
+                );
+                Console.WriteLine("Found: " + quesFounds.Count);
                 //if (quesFound != null)
                 //{
                 //    Console.WriteLine($"sheetQs-{quesFound.Question}-");
@@ -125,68 +139,31 @@ namespace auto_coursera
             driver
                 .FindElement(
                     By.XPath(
-                        "//*[@id=\"TUNNELVISIONWRAPPER_CONTENT_ID\"]/div[2]/div/div/div/div/div/div/div[2]/div/div[1]/div/div[2]/div[1]/div/div/label/div"
+                        "//*[@id=\"TUNNELVISIONWRAPPER_CONTENT_ID\"]/div[2]/div/div/div/div/div/div/div[2]/div/div[1]/div/div[2]/div[1]/div/div"
                     ),
                     10000
                 )
                 .Click();
-            new WebDriverWait(driver, TimeSpan.FromSeconds(20))
-                .Until(
-                    ExpectedConditions.ElementToBeClickable(
-                        By.XPath(
-                            "//*[@id=\"TUNNELVISIONWRAPPER_CONTENT_ID\"]/div[2]/div/div/div/div/div/div/div[2]/div/div[1]/div/div[2]/div[1]/div/div/label/div"
-                        )
-                    )
-                )
-                .Click();
-            Console.WriteLine("Clicked agree button");
 
+            // Click submit button
             driver
                 .FindElement(
                     By.XPath(
-                        "//*[@id=\"TUNNELVISIONWRAPPER_CONTENT_ID\"]/div[2]/div/div/div/div/div/div/div[2]/div/div[1]/div/div[2]/div[1]/div/div/label"
+                        "//*[@id=\"TUNNELVISIONWRAPPER_CONTENT_ID\"]/div[2]/div/div/div/div/div/div/div[2]/div/div[2]/button[1]"
                     ),
                     10000
                 )
                 .Click();
-            // Click submit button
-            new WebDriverWait(driver, TimeSpan.FromSeconds(20))
-                .Until(
-                    ExpectedConditions.ElementToBeClickable(
-                        By.CssSelector(
-                            "#TUNNELVISIONWRAPPER_CONTENT_ID > div.cds-231.css-1cxrrkn.cds-232.cds-237 > div > div > div > div > div > div > div:nth-child(2) > div > div.css-oc6ooc > button.cds-105.cds-button-disableElevation.cds-button-primary.css-ra3hwj"
-                        )
-                    )
+
+            // Click "Next" button
+            driver
+                .FindElement(
+                    By.XPath(
+                        "//*[@id=\"TUNNELVISIONWRAPPER_CONTENT_ID\"]/div[1]/div/div/div/div/div/div/div[2]/div/button"
+                    ),
+                    10000
                 )
                 .Click();
-            Console.WriteLine("Clicked submit button");
-
-            //driver
-            //    .FindElement(
-            //        By.XPath(
-            //            "//*[@id=\"TUNNELVISIONWRAPPER_CONTENT_ID\"]/div[2]/div/div/div/div/div/div/div[2]/div/div[1]/div/div[2]/div[1]/div/div"
-            //        ),
-            //        10000
-            //    )
-            //    .Click();
-
-            //driver
-            //    .FindElement(
-            //        By.XPath(
-            //            "//*[@id=\"TUNNELVISIONWRAPPER_CONTENT_ID\"]/div[2]/div/div/div/div/div/div/div[2]/div/div[2]/button[1]"
-            //        ),
-            //        10000
-            //    )
-            //    .Click();
-
-            //driver
-            //    .FindElement(
-            //        By.XPath(
-            //            "//*[@id=\"TUNNELVISIONWRAPPER_CONTENT_ID\"]/div[1]/div/div/div/div/div/div/div[2]/div/button"
-            //        ),
-            //        10000
-            //    )
-            //    .Click();
         }
 
         //public static void DoTest(string course, int mooc)

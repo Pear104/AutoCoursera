@@ -8,6 +8,32 @@
 
     internal class CourseData
     {
+        public static Course ENW492c = new Course
+        {
+            QuizUrls =
+            [
+                //"https://www.coursera.org/learn/grammar-punctuation/exam/GUVaf/verb-tenses-and-conjunctions",
+                //"https://www.coursera.org/learn/grammar-punctuation/exam/XRY2Y/compound-and-complex-sentences", // Cai nay bi sai nhieu
+                //"https://www.coursera.org/learn/grammar-punctuation/exam/Udaq4/commas-parallel-structure-and-sentence-variety",
+                //"https://www.coursera.org/learn/getting-started-with-essay-writing/exam/bhs3M/essay-writing",
+                //"https://www.coursera.org/learn/getting-started-with-essay-writing/exam/NEr6a/writing-compare-contrast-essays",
+                "https://www.coursera.org/learn/getting-started-with-essay-writing/exam/JB7Fb/writing-cause-effect-essays",
+                "https://www.coursera.org/learn/getting-started-with-essay-writing/exam/pedZ2/argument-essays",
+                "https://www.coursera.org/learn/advanced-writing/exam/DzuJn/advanced-argument-quiz",
+                "https://www.coursera.org/learn/advanced-writing/exam/HcYie/plagiarism-quiz",
+                "https://www.coursera.org/learn/advanced-writing/exam/CPlvf/synthesis-essay-quiz",
+                "https://www.coursera.org/learn/advanced-writing/exam/IFp2m/documented-essay-quiz",
+                "https://www.coursera.org/learn/introduction-to-research-for-essay-writing/exam/cYaIj/introduction-to-research-quiz",
+                "https://www.coursera.org/learn/introduction-to-research-for-essay-writing/exam/Gszpk/doing-research-quiz",
+                "https://www.coursera.org/learn/introduction-to-research-for-essay-writing/exam/4WjQv/language-for-research-quiz",
+                "https://www.coursera.org/learn/introduction-to-research-for-essay-writing/exam/UtIw0/citing-sources-and-formatting-quiz"
+            ],
+            AssignmentUrls =
+            [
+                "https://www.coursera.org/learn/getting-started-with-essay-writing/peer/ICHzg/compare-contrast-essay-peer-review/give-feedback"
+            ]
+        };
+
         public static Course ITE302c = new Course
         {
             AssignmentUrls =
@@ -81,32 +107,6 @@
                 "https://www.coursera.org/learn/user-experience-capstone/exam/cpD7W/quiz-iterative-prototyping",
             ],
             QuizUrls = []
-        };
-
-        public static Course ENW492c = new Course
-        {
-            QuizUrls =
-            [
-                //"https://www.coursera.org/learn/grammar-punctuation/exam/GUVaf/verb-tenses-and-conjunctions",
-                //"https://www.coursera.org/learn/grammar-punctuation/exam/XRY2Y/compound-and-complex-sentences", // Cai nay bi sai nhieu
-                "https://www.coursera.org/learn/grammar-punctuation/exam/Udaq4/commas-parallel-structure-and-sentence-variety",
-                "https://www.coursera.org/learn/getting-started-with-essay-writing/exam/bhs3M/essay-writing",
-                "https://www.coursera.org/learn/getting-started-with-essay-writing/exam/NEr6a/writing-compare-contrast-essays",
-                "https://www.coursera.org/learn/getting-started-with-essay-writing/exam/JB7Fb/writing-cause-effect-essays",
-                "https://www.coursera.org/learn/getting-started-with-essay-writing/exam/pedZ2/argument-essays",
-                "https://www.coursera.org/learn/advanced-writing/exam/DzuJn/advanced-argument-quiz",
-                "https://www.coursera.org/learn/advanced-writing/exam/HcYie/plagiarism-quiz",
-                "https://www.coursera.org/learn/advanced-writing/exam/CPlvf/synthesis-essay-quiz",
-                "https://www.coursera.org/learn/advanced-writing/exam/IFp2m/documented-essay-quiz",
-                "https://www.coursera.org/learn/introduction-to-research-for-essay-writing/exam/cYaIj/introduction-to-research-quiz",
-                "https://www.coursera.org/learn/introduction-to-research-for-essay-writing/exam/Gszpk/doing-research-quiz",
-                "https://www.coursera.org/learn/introduction-to-research-for-essay-writing/exam/4WjQv/language-for-research-quiz",
-                "https://www.coursera.org/learn/introduction-to-research-for-essay-writing/exam/UtIw0/citing-sources-and-formatting-quiz"
-            ],
-            AssignmentUrls =
-            [
-                "https://www.coursera.org/learn/getting-started-with-essay-writing/peer/ICHzg/compare-contrast-essay-peer-review/give-feedback"
-            ]
         };
 
         public static Dictionary<string, Course> All = new Dictionary<string, Course>
