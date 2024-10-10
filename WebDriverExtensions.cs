@@ -33,21 +33,14 @@ namespace auto_coursera
             return driver.FindElements(by);
         }
 
-        public static void RemovePopup(this IWebDriver driver, int timeoutInSeconds)
+        public static void FindAndClick(this IWebDriver driver, By by, int timeoutInSeconds)
         {
             if (timeoutInSeconds > 0)
             {
                 var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(timeoutInSeconds));
                 try
                 {
-                    wait.Until(
-                            ExpectedConditions.ElementToBeClickable(
-                                By.XPath(
-                                    "//*[@id=\"rendered-content\"]/div/div[1]/div[1]/div/div/div/div/div/div[1]/button"
-                                )
-                            )
-                        )
-                        ?.Click();
+                    wait.Until(ExpectedConditions.ElementToBeClickable(by))?.Click();
                 }
                 catch { }
             }

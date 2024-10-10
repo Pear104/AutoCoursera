@@ -1,5 +1,23 @@
 ﻿namespace auto_coursera
 {
+    public class Course
+    {
+        public string[] QuizUrls { get; set; }
+        public Assignment[] Assignments { get; set; }
+    }
+
+    public class Assignment
+    {
+        public Assignment(string url, string type)
+        {
+            Url = url;
+            Type = type;
+        }
+
+        public string Url { get; set; }
+        public string Type { get; set; }
+    }
+
     public class Quiz
     {
         public string Question { get; set; } = string.Empty;

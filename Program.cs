@@ -11,8 +11,8 @@
         {
             Coursera.Login(Config.email, Config.password);
 
-            //Coursera.DoCourse("ITE302c");
             Coursera.DoCourse("ENW492c");
+            //Coursera.DoAssignment("ENW492c");
             //Coursera.DoSingleQuiz("ENW492c", CourseData.All["ENW492c"].QuizUrls[0]);
             //Coursera.MarkCourse("WDU203c");
         }

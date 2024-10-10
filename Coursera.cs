@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using auto_coursera.Doing;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Edge;
 
 namespace auto_coursera
@@ -32,7 +33,6 @@ namespace auto_coursera
                 .Click();
 
             // Close the popup
-            //Thread.Sleep(20);
             try
             {
                 driver
@@ -48,223 +48,22 @@ namespace auto_coursera
             catch { }
         }
 
-        public static string NormalizeString(string input)
-        {
-            return new string(input.Where(c => !char.IsPunctuation(c) || c == '\"').ToArray())
-                .ToLower()
-                .Trim();
-        }
-
-        public static void DoSingleQuiz(string course, string quizUrl)
-        {
-            driver.Navigate().GoToUrl(quizUrl);
-            Console.WriteLine(quizUrl);
-            // Click on continue button
-            driver
-                .FindElement(
-                    By.XPath("//*[@id=\"main\"]/div[1]/div[3]/div[1]/div[2]/div/div/div/div/div"),
-                    10000
-                )
-                .Click();
-
-            var questions = driver.FindElements(By.ClassName("rc-FormPartsQuestion"), 10000);
-
-            // The keys read from file
-            var keys = Helper.ReadKey($"key/{course}.txt");
-            var i = 1;
-            foreach (IWebElement question in questions)
-            {
-                Console.WriteLine(i);
-                i++;
-                var questionText = string.Join(
-                        "",
-                        question
-                            .FindElements(
-                                By.CssSelector(
-                                    "div:nth-child(1) > div.rc-FormPartsQuestion__contentCell p"
-                                )
-                            )
-                            .Select(q => q.Text.Trim())
-                    )
-                    .Replace("“", "\"")
-                    .Replace("”", "\"")
-                    .Replace("’", "'")
-                    .Replace("‛", "'");
-                Console.WriteLine("===================================");
-                Console.WriteLine(questionText);
-                // Check if the current question extracted from Selenium already exist in my keys file or not
-                var quesFounds = keys.FindAll(key =>
-                    key.Question.Contains(string.Join("", questionText))
-                );
-                Console.WriteLine("Found: " + quesFounds.Count);
-                //if (quesFound != null)
-                //{
-                //    Console.WriteLine($"sheetQs-{quesFound.Question}-");
-                //    Console.WriteLine($"sheetAns-{quesFound.Answer}-");
-                //}
-                var answers = question.FindElements(By.ClassName("rc-Option"));
-                foreach (IWebElement answer in answers)
-                {
-                    Console.WriteLine($"testAns-{answer.Text.Trim()}-");
-                    var answerText = answer
-                        .Text.Trim()
-                        .Replace("“", "\"")
-                        .Replace("”", "\"")
-                        .Replace("’", "'")
-                        .Replace("‛", "'");
-                    var autoTrueText =
-                        "Yes, I have completed reviews of the work of 3 peers for each prompt in the preceding assignment.";
-                    if (quesFounds.Count > 0)
-                    {
-                        foreach (var quesFound in quesFounds)
-                        {
-                            if (
-                                (quesFound.Answer.Contains(answerText))
-                                || answerText.Contains(autoTrueText)
-                            )
-                            {
-                                Console.WriteLine($"key-{answerText}-");
-                                answer.Click();
-                            }
-                        }
-                    }
-                    else
-                    {
-                        answer.Click();
-                    }
-                }
-            }
-
-            // Click agree button
-            driver
-                .FindElement(
-                    By.XPath(
-                        "//*[@id=\"TUNNELVISIONWRAPPER_CONTENT_ID\"]/div[2]/div/div/div/div/div/div/div[2]/div/div[1]/div/div[2]/div[1]/div/div"
-                    ),
-                    10000
-                )
-                .Click();
-
-            // Click submit button
-            driver
-                .FindElement(
-                    By.XPath(
-                        "//*[@id=\"TUNNELVISIONWRAPPER_CONTENT_ID\"]/div[2]/div/div/div/div/div/div/div[2]/div/div[2]/button[1]"
-                    ),
-                    10000
-                )
-                .Click();
-
-            // Click "Next" button
-            driver
-                .FindElement(
-                    By.XPath(
-                        "//*[@id=\"TUNNELVISIONWRAPPER_CONTENT_ID\"]/div[1]/div/div/div/div/div/div/div[2]/div/button"
-                    ),
-                    10000
-                )
-                .Click();
-        }
-
-        //public static void DoTest(string course, int mooc)
-        //{
-        //    foreach (var week in CourseData.All[course])
-        //    {
-        //        Console.WriteLine(int.Parse(week.Key.Last().ToString()));
-        //        DoSingleQuiz(course, mooc, int.Parse(week.Key.Last().ToString()));
-        //    }
-        //}
-
         public static void DoCourse(string course)
         {
             foreach (var quizUrl in CourseData.All[course].QuizUrls)
             {
-                //Console.WriteLine(int.Parse(week.Key.Last().ToString()));
-                DoSingleQuiz(course, quizUrl);
+                QuizDoing.DoSingleQuiz(driver, course, quizUrl);
             }
-        }
 
-        public static void MarkCourse(string course)
-        {
-            foreach (var url in MarkData.All[course])
+            foreach (var assignment in CourseData.All[course].Assignments)
             {
-                Mark(url);
+                AssignmentDoing.DoAssignment(driver, course);
             }
-        }
 
-        public static void Mark(string url)
-        {
-            driver.Navigate().GoToUrl(url);
-            try
+            foreach (var assignment in CourseData.All[course].Assignments)
             {
-                // "Review assignments"
-                //*[@id="main"]/div[1]/div[1]/div[1]/div[2]/div/div/div[2]/div/div/div[2]/button
-                driver
-                    .FindElement(
-                        By.XPath(
-                            "//*[@id=\"main\"]/div[1]/div[1]/div[1]/div[2]/div/div/div[2]/div/div/div[2]/button"
-                        ),
-                        5
-                    )
-                    .Click();
-                Console.WriteLine("Clicked Review assignments");
+                MarkDoing.Mark(driver, assignment.Url + "/give-feedback");
             }
-            catch { }
-
-            // "Start reviewing"
-            //*[@id="main"]/div[1]/div[1]/div[2]/button
-            driver
-                .FindElement(By.XPath("//*[@id=\"main\"]/div[1]/div[1]/div[2]/button"), 10000)
-                .Click();
-            Console.WriteLine("Clicked Start reviewing");
-
-            // Options
-            for (int i = 0; i < 6; i++)
-            {
-                MarkSingle();
-            }
-        }
-
-        public static void MarkSingle()
-        {
-            var options = driver.FindElements(
-                By.CssSelector("div.rc-FormPart > div > div:nth-child(2) > div"),
-                20
-            );
-            Console.WriteLine(options.Count());
-
-            foreach (IWebElement element in options)
-            {
-                try
-                {
-                    element.Click();
-                }
-                catch
-                {
-                    Console.WriteLine("Element not clickable");
-                }
-            }
-
-            try
-            {
-                var feedback = driver.FindElement(
-                    By.XPath(
-                        "//*[@id=\"main\"]/div[1]/div[1]/div[2]/div/div[3]/div/div[2]/div/div[6]/div/textarea"
-                    )
-                );
-                feedback.SendKeys("ahihi do ngoc");
-            }
-            catch
-            {
-                Console.WriteLine("this test has no feedback");
-            }
-
-            var submit = driver.FindElement(
-                By.XPath("//*[@id=\"main\"]/div[1]/div[1]/div[2]/div/div[5]/div[1]/button"),
-                10
-            );
-            submit.Click();
-            Thread.Sleep(5000);
         }
     }
 }

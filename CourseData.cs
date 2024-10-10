@@ -1,11 +1,5 @@
 ﻿namespace auto_coursera
 {
-    class Course
-    {
-        public string[] QuizUrls { get; set; }
-        public string[] AssignmentUrls { get; set; }
-    }
-
     internal class CourseData
     {
         public static Course ENW492c = new Course
@@ -13,10 +7,10 @@
             QuizUrls =
             [
                 //"https://www.coursera.org/learn/grammar-punctuation/exam/GUVaf/verb-tenses-and-conjunctions",
-                //"https://www.coursera.org/learn/grammar-punctuation/exam/XRY2Y/compound-and-complex-sentences", // Cai nay bi sai nhieu
+                //"https://www.coursera.org/learn/grammar-punctuation/exam/XRY2Y/compound-and-complex-sentences",
                 //"https://www.coursera.org/learn/grammar-punctuation/exam/Udaq4/commas-parallel-structure-and-sentence-variety",
-                //"https://www.coursera.org/learn/getting-started-with-essay-writing/exam/bhs3M/essay-writing",
-                //"https://www.coursera.org/learn/getting-started-with-essay-writing/exam/NEr6a/writing-compare-contrast-essays",
+                "https://www.coursera.org/learn/getting-started-with-essay-writing/exam/bhs3M/essay-writing",
+                "https://www.coursera.org/learn/getting-started-with-essay-writing/exam/NEr6a/writing-compare-contrast-essays",
                 "https://www.coursera.org/learn/getting-started-with-essay-writing/exam/JB7Fb/writing-cause-effect-essays",
                 "https://www.coursera.org/learn/getting-started-with-essay-writing/exam/pedZ2/argument-essays",
                 "https://www.coursera.org/learn/advanced-writing/exam/DzuJn/advanced-argument-quiz",
@@ -28,15 +22,54 @@
                 "https://www.coursera.org/learn/introduction-to-research-for-essay-writing/exam/4WjQv/language-for-research-quiz",
                 "https://www.coursera.org/learn/introduction-to-research-for-essay-writing/exam/UtIw0/citing-sources-and-formatting-quiz"
             ],
-            AssignmentUrls =
+            Assignments =
             [
-                "https://www.coursera.org/learn/getting-started-with-essay-writing/peer/ICHzg/compare-contrast-essay-peer-review/give-feedback"
+                new Assignment(
+                    "https://www.coursera.org/learn/getting-started-with-essay-writing/peer/ICHzg/compare-contrast-essay-peer-review",
+                    "file"
+                ),
+                new Assignment(
+                    "https://www.coursera.org/learn/getting-started-with-essay-writing/peer/fQ0p5/cause-effect-essay-peer-review",
+                    "file"
+                ),
+                new Assignment(
+                    "https://www.coursera.org/learn/getting-started-with-essay-writing/peer/y10b5/argument-essay-peer-review",
+                    "file"
+                ),
+                new Assignment(
+                    "https://www.coursera.org/learn/advanced-writing/peer/a4RMx/advanced-argument-essay-peer-review",
+                    "file"
+                ),
+                new Assignment(
+                    "https://www.coursera.org/learn/advanced-writing/peer/mk7IJ/synthesis-essay-peer-review",
+                    "file"
+                ),
+                new Assignment(
+                    "https://www.coursera.org/learn/advanced-writing/peer/8kvZL/documented-essay-peer-review",
+                    "file"
+                ),
+                new Assignment(
+                    "https://www.coursera.org/learn/introduction-to-research-for-essay-writing/peer/fXG7c/annotated-bibliography-assignment-feedback",
+                    "text"
+                ),
+                new Assignment(
+                    "https://www.coursera.org/learn/introduction-to-research-for-essay-writing/peer/pAw7G/thesis-statement-for-research-paper",
+                    "text"
+                ),
+                new Assignment(
+                    "https://www.coursera.org/learn/introduction-to-research-for-essay-writing/peer/mzs3a/using-statistics-for-writing-peer-review",
+                    "text"
+                ),
+                new Assignment(
+                    "https://www.coursera.org/learn/academic-writing-capstone/peer/liyDu/submit-research-paper-final-draft",
+                    "file"
+                ),
             ]
         };
 
         public static Course ITE302c = new Course
         {
-            AssignmentUrls =
+            QuizUrls =
             [
                 "https://www.coursera.org/learn/promote-ethical-data-driven-technologies/exam/iyd6e/data-driven-emerging-technologies-quiz",
                 "https://www.coursera.org/learn/promote-ethical-data-driven-technologies/exam/2rF4o/privacy-and-legal-concepts-related-to-data-driven-technologies-quiz",
@@ -63,19 +96,22 @@
                 "https://www.coursera.org/learn/ethical-data-driven-technology-leader/exam/j5tLn/policy-development-and-monitoring-quiz",
                 "https://www.coursera.org/learn/preparing-for-your-certnexus-certification-exam/exam/DLw5W/summative-assessment"
             ],
-            QuizUrls =
+            Assignments =
             [
-                "https://www.coursera.org/learn/promote-ethical-data-driven-technologies/exam/iyd6e/data-driven-emerging-technologies-quiz",
+                new Assignment("writing-cause-effect-essays", "writing-cause-effect-essays"),
+                new Assignment("writing-cause-effect-essays", "writing-cause-effect-essays"),
+                new Assignment("writing-cause-effect-essays", "writing-cause-effect-essays"),
+                new Assignment("writing-cause-effect-essays", "writing-cause-effect-essays"),
+                new Assignment("writing-cause-effect-essays", "writing-cause-effect-essays"),
+                new Assignment("writing-cause-effect-essays", "writing-cause-effect-essays"),
+                new Assignment("writing-cause-effect-essays", "writing-cause-effect-essays"),
             ]
         };
 
         public static Course WDU203c = new Course
         {
-            AssignmentUrls =
+            QuizUrls =
             [
-                "https://www.coursera.org/learn/promote-ethical-data-driven-technologies/exam/iyd6e/data-driven-emerging-technologies-quiz",
-                "https://www.coursera.org/learn/promote-ethical-data-driven-technologies/exam/vA5Tl/ethical-theories-quiz",
-                "https://www.coursera.org/learn/promote-ethical-data-driven-technologies/exam/RyrAe/ethical-principles-applied-to-data-driven-technologies-quiz",
                 "https://www.coursera.org/learn/understanding-user-needs/exam/qkpjF/user-needs-assessment-and-qualitative-research",
                 "https://www.coursera.org/learn/understanding-user-needs/exam/GOPzh/peer-review-1-self-check",
                 "https://www.coursera.org/learn/understanding-user-needs/exam/ePIY5/peer-review-2-self-check",
@@ -106,7 +142,19 @@
                 "https://www.coursera.org/learn/user-experience-capstone/exam/ui17o/quiz-user-testing",
                 "https://www.coursera.org/learn/user-experience-capstone/exam/cpD7W/quiz-iterative-prototyping",
             ],
-            QuizUrls = []
+            Assignments =
+            [
+                new Assignment(
+                    "https://www.coursera.org/learn/getting-started-with-essay-writing/peer/ICHzg/compare-contrast-essay-peer-review",
+                    "file"
+                ),
+                //new Assignment("writing-cause-effect-essays", "writing-cause-effect-essays"),
+                //new Assignment("writing-cause-effect-essays", "writing-cause-effect-essays"),
+                //new Assignment("writing-cause-effect-essays", "writing-cause-effect-essays"),
+                //new Assignment("writing-cause-effect-essays", "writing-cause-effect-essays"),
+                //new Assignment("writing-cause-effect-essays", "writing-cause-effect-essays"),
+                //new Assignment("writing-cause-effect-essays", "writing-cause-effect-essays"),
+            ]
         };
 
         public static Dictionary<string, Course> All = new Dictionary<string, Course>
